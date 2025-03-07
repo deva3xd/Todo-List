@@ -7,9 +7,9 @@ type Todos = {
     name: string;
 }
 
-const deleteTodo = ({todos}: {todos: Todos}) => {
+const DeleteTodo = ({todos}: {todos: Todos}) => {
     const handleDelete = async(todosId: number) => {
-        await axios.delete(`./api/todos/${[todosId]}`)
+        await axios.delete(`./api/${[todosId]}`)
         router.refresh();
     }
 
@@ -22,4 +22,4 @@ const deleteTodo = ({todos}: {todos: Todos}) => {
     )
 }
 
-export default deleteTodo
+export default DeleteTodo

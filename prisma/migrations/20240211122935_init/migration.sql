@@ -5,12 +5,12 @@
 
 */
 -- DropTable
-DROP TABLE "Collection";
+DROP TABLE IF EXISTS `Collection`;
 
 -- CreateTable
-CREATE TABLE "Todos" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
+CREATE TABLE `Todos` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
 
-    CONSTRAINT "Todos_pkey" PRIMARY KEY ("id")
+    CONSTRAINT `Todos_pkey` PRIMARY KEY (`id`)
 );

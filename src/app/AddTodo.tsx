@@ -1,14 +1,14 @@
 "use client";
-import { useState, SyntheticEvent } from "react";
 import axios from "axios";
+import { useState, SyntheticEvent } from "react";
 import { useRouter } from "next/navigation";
 
-const addTodo = () => {
+const AddTodo = () => {
     const [name, setName] = useState("");
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        await axios.post('./api/todos', {
+        await axios.post('./api', {
             name: name
         })
         setName("");
@@ -28,4 +28,4 @@ const addTodo = () => {
     )
 }
 
-export default addTodo
+export default AddTodo

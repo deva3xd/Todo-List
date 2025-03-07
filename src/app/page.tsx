@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import Todo from "@/addTodo";
-import DeleteTodo from "@/deleteTodo";
+import Todo from "@/AddTodo";
+import DeleteTodo from "@/DeleteTodo";
 
 const prisma = new PrismaClient();
 
