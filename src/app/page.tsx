@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import Todo from "@/AddTodo";
-import DeleteTodo from "@/DeleteTodo";
+import Todo from "@/components/AddTodo";
+import DeleteTodo from "@/components/DeleteTodo";
 
 const prisma = new PrismaClient();
 
@@ -9,21 +9,27 @@ const getTodos = async () => {
   return res;
 }
 
+const count = async () => {
+  const count = await prisma.todos.count();
+  return count;
+}
+
 export default async function Home() {
   const todos = await getTodos();
   
   return (
-    <main className="mx-10 my-5 flex justify-center">
+    <main className="flex justify-center">
       <div className="px-3 w-1/3">
         <Todo />
-        <div className='my-1'>
+        <div className='my-2'>
           {todos.map((todo) => (
-            <div className='p-2 border-b border-black flex items-center justify-between' key={todo.id}>
+            <div className='my-1 p-1 border flex items-center justify-between rounded-md' key={todo.id}>
               <p>{todo.name}</p>
               <DeleteTodo todos={todo} />
             </div>
           ))}
         </div>
+        <p className="text-sm">{count()} task remaining</p>
       </div>
     </main>
   );

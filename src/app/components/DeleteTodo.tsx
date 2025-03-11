@@ -1,6 +1,8 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 type Todos = {
     id: number;
@@ -16,9 +18,9 @@ const DeleteTodo = ({todos}: {todos: Todos}) => {
     const router = useRouter();
     
     return (
-        <>
-            <button type="button" onClick={() => handleDelete(todos.id)} className="bg-red-600 hover:bg-red-900 py-1 px-2 rounded-sm text-white">Hapus</button>
-        </>
+        <button type="button" onClick={() => handleDelete(todos.id)} className="py-1 px-2 rounded-md text-black">
+            <FontAwesomeIcon icon={faTrash} />
+        </button>
     )
 }
 

@@ -3,11 +3,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 const COFFEE_NAMES = [
-    "Black Coffee",
-    "Turkish Coffee",
-    "Cold Brew",
-    "Iced Coffee",
-    "Ristretto",
+    "Testing",
 ]
 
 /**
