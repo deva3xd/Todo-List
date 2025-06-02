@@ -4,18 +4,9 @@ import DeleteTodo from "@/components/DeleteTodo";
 
 const prisma = new PrismaClient();
 
-const getTodos = async () => {
-  const res = await prisma.todos.findMany();
-  return res;
-}
-
-const count = async () => {
+const Home = async() => {
+  const todos = await prisma.todos.findMany();;
   const count = await prisma.todos.count();
-  return count;
-}
-
-export default async function Home() {
-  const todos = await getTodos();
   
   return (
     <main className="flex justify-center">
@@ -29,8 +20,10 @@ export default async function Home() {
             </div>
           ))}
         </div>
-        <p className="text-sm">{count()} task remaining</p>
+        <p className="text-sm">{count} task remaining</p>
       </div>
     </main>
   );
 }
+
+export default Home
