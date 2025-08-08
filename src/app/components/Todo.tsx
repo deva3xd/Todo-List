@@ -14,21 +14,7 @@ type TodosResponse = {
   count: number;
 };
 
-const getTodos = async (): Promise<TodosResponse> => {
-  const res = await fetch("http://localhost:3000/api", {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch todos");
-  }
-
-  const json = await res.json();
-  return json;
-};
-const Todo = async () => {
-  const todos: TodosResponse = await getTodos();
-
+const Todo =  ({todos} : {todos: TodosResponse}) => {
   return (
     <section className="px-20 py-4 bg-white max-w-screen-2xl mx-auto">
       <div className="flex justify-between items-center mb-4">
