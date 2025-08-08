@@ -1,10 +1,9 @@
 "use client"
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Status } from  "@prisma/client";
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { FaCheck } from 'react-icons/fa';
 
 type Todos = {
     id: number;
@@ -30,7 +29,7 @@ const UpdateTodo = ({todos}: {todos: Todos}) => {
 
   return (
     <button onClick={() => handleUpdate(todos.id, todos.status)}>
-      <FontAwesomeIcon icon={faCheck} className="hover:text-green-500" />
+      <FaCheck className="hover:text-green-500" />
     </button>
   )
 }
