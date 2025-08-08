@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Todo List Next JS",
-  description: "Build todo list app with Next JS",
+  title: "YourTodo",
+  description: "A simple todo app wiith brutalism design",
 };
 
 export default function RootLayout({
