@@ -37,15 +37,29 @@ const Header = ({ todos }: { todos: TodosResponse }) => {
           <p className="text-lg font-normal">Total</p>
         </div>
         <div className="w-72 flex flex-col justifty-center items-center p-8 border-4 border-black shadow-sm shadow-black">
-          <p className="text-4xl font-bold">{todos.data.filter(todo => todo.status === Status.pending).length}</p>
+          <p className="text-4xl font-bold">
+            {todos.data.filter((todo) => todo.status === Status.pending).length}
+          </p>
           <p className="text-lg font-normal">Pending</p>
         </div>
         <div className="w-72 flex flex-col justifty-center items-center p-8 border-4 border-black shadow-sm shadow-black">
-          <p className="text-4xl font-bold">{todos.data.filter(todo => todo.status === Status.done).length}</p>
+          <p className="text-4xl font-bold">
+            {todos.data.filter((todo) => todo.status === Status.done).length}
+          </p>
           <p className="text-lg font-normal">Done</p>
         </div>
         <div className="w-72 flex flex-col justifty-center items-center p-8 border-4 border-black shadow-sm shadow-black">
-          <p className="text-4xl font-bold">{Math.round((todos.data.filter(todo => todo.status === Status.done).length / todos.count) * 100)}%</p>
+          <p className="text-4xl font-bold">
+            {todos && todos.count > 0
+              ? Math.round(
+                  (todos.data.filter((todo) => todo.status === Status.done)
+                    .length /
+                    todos.count) *
+                    100
+                )
+              : 0}
+            %
+          </p>
           <p className="text-lg font-normal">Progress</p>
         </div>
       </div>
