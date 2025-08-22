@@ -21,7 +21,7 @@ const DeleteTodo = ({todos}: {todos: Todos}) => {
     }
 
     return (
-        <button type="button" onClick={() => handleDelete(todos.id)} className="py-1 px-2 rounded-md text-black">
+        <button type="button" onClick={() => handleDelete(todos.id)}>
             <FaTrash className="hover:text-red-500" />
         </button>
     )
