@@ -1,44 +1,50 @@
-import { Toaster } from "sonner";
+"use client";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-import Header from "./components/Header";
-import Todo from "./components/Todo";
-import { Status } from "@prisma/client";
+import Header from "@/components/Header";
+import Todos from "@/components/Todos";
 
-type Todos = {
-  id: number;
-  name: string;
-  status: Status;
+type Todo = {
+    id: number;
+    todo: string;
+    done: boolean;
 };
 
-type TodosResponse = {
-  data: Todos[];
-  count: number;
-};
+const Home = () => {
+    const [todos, setTodos] = useState<Todo[]>([]);
 
-const getTodos = async (): Promise<TodosResponse> => {
-  const res = await fetch("http://localhost:3000/api", {
-    cache: "no-store",
-  });
+    // load localStorage
+    useEffect(() => {
+        const saved = localStorage.getItem("todos");
+        if (saved) setTodos(JSON.parse(saved));
+    }, []);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch todos");
-  }
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
-  const json = await res.json();
-  return json;
-};
+    // handler
+    const addTodo = (todo: string) => {
+        setTodos((prev) => [...prev, { id: Date.now(), todo, done: false }]);
+    };
 
-const Home = async() => {
-    const todos: TodosResponse = await getTodos();
+    const updateTodo = (id: number) => {
+        setTodos((prev) =>
+            prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+        );
+    };
 
-  return (
-    <main>
-      <Navbar />
-      <Toaster richColors />
-      <Header todos={todos} />
-      <Todo todos={todos} />
-    </main>
-  );
+    const deleteTodo = (id: number) => {
+        setTodos((prev) => prev.filter((t) => t.id !== id));
+    };
+
+    return (
+        <main>
+            <Navbar />
+            <Header todos={todos} onAdd={addTodo} />
+            <Todos todos={todos} onUpdate={updateTodo} onDelete={deleteTodo} />
+        </main>
+    );
 };
 
 export default Home;

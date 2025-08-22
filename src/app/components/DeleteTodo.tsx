@@ -1,27 +1,20 @@
 "use client";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { Status } from "@prisma/client";
 import { FaTrash } from "react-icons/fa";
 
-type Todos = {
+type Todo = {
     id: number;
-    name: string;
-    status: Status;
+    todo: string;
+    done: boolean;
 }
 
-const DeleteTodo = ({todos}: {todos: Todos}) => {
-    const router = useRouter();
+type HeaderProps = {
+    todo: Todo;
+    onDelete: (id: number) => void;
+}
 
-    const handleDelete = async(todosId: number) => {
-        await axios.delete(`./api/${[todosId]}`);
-        toast.success('Data deleted');
-        router.refresh();
-    }
-
+const DeleteTodo = ({ todo, onDelete }: HeaderProps) => {
     return (
-        <button type="button" onClick={() => handleDelete(todos.id)}>
+        <button type="button" onClick={() => onDelete(todo.id)}>
             <FaTrash className="hover:text-red-500" />
         </button>
     )

@@ -1,37 +1,24 @@
 "use client"
 import React from 'react'
-import { Status } from  "@prisma/client";
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { FaCheck } from 'react-icons/fa';
 
-type Todos = {
+type Todo = {
     id: number;
-    name: string;
-    status: Status;
+    todo: string;
+    done: boolean;
 }
 
-const UpdateTodo = ({todos}: {todos: Todos}) => {
-    const router = useRouter();
+type HeaderProps = {
+    todo: Todo;
+    onUpdate: (id: number) => void;
+}
 
-    const handleUpdate = async (todosId: number, currentStatus: Status) => {
-        const newStatus: Status = currentStatus === "pending" ? "done" : "pending";
-
-        try {
-            await axios.patch(`/api/${todosId}`, {
-                status: newStatus,
-            } );
-            router.refresh();
-        } catch (error) {
-            console.error("Failed to update todo status:", error);
-        }
-    };
-
-  return (
-    <button onClick={() => handleUpdate(todos.id, todos.status)}>
-      <FaCheck className="hover:text-green-500" />
-    </button>
-  )
+const UpdateTodo = ({ todo, onUpdate }: HeaderProps) => {
+    return (
+        <button onClick={() => onUpdate(todo.id)}>
+            <FaCheck className="hover:text-green-500" />
+        </button>
+    )
 }
 
 export default UpdateTodo
