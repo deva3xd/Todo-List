@@ -16,9 +16,9 @@ type HeaderProps = {
 const Header = ({ todos, onAdd }: HeaderProps) => {
     return (
         <section className="bg-black border-b-4 border-black max-w-screen-2xl mx-auto pt-16">
-            <div className="p-4 md:p-12 lg:px-16 lg:py-24">
+            <div className="px-4 py-12 lg:px-16 lg:py-24">
                 <div className="mx-auto max-w-lg text-center">
-                    <h2 className="text-2xl font-bold text-white sm:text-4xl uppercase">
+                    <h2 className="text-3xl font-bold text-white sm:text-4xl uppercase">
                         create your task
                     </h2>
                     <p className="text-white mt-2 sm:mt-4 sm:block uppercase text-xs sm:text-base">
